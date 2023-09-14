@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        border: 2px black solid;
+        background-color: navy;
+    }
+
+    .stopwatch {
+        font-size: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+        background-color: yellow;
+        color: white;
+    }
+
+    button {
+        padding: 20px 50px;
+        background-color: greenyellow;
+        border-radius: 10px;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background-color: pink;
+    }
+</style>
+
+<body style="background-image: url('C:\\Users\\hemanth\\Downloads\\watch.jpg');background-repeat: no-repeat ;background-size: 2000px;">
+    <div class="main">
+        <div class="stopwatch">
+            <div id="hours">00h</div>
+            <div id="minutes">00m</div>
+            <div id="seconds">00s</div>
+            <div id="milliseconds">00ms</div>
+           
+        </div>
+        <div class="button" style="display:flex; gap:25px; background-color: black; c">
+            <button class="start" onclick="begin()">start</button>
+            <button class="pause" onclick="stop()">pause</button>
+            <button class="reset" onclick="reseting()">reset</button>
+            <button class="time" onclick="img()">time</button>
+        </div>
+        <!-- <div id="print"></div> -->
+        <img src="C:\Users\hemanth\Downloads\stop.gif" alt="" id="stwach" height="500px">
+</body>
+<script>
+    function img() {
+    document.getElementById("stwach").setAttribute("height", "200px");
+    }
+    var milliseconds = 0;
+    var seconds = 0;
+    var minutes = 0;
+    var hours = 0;
+    function begin() {
+        // document.getElementById("start").setAttribute('disabled', 'disabled')
+
+        watch = setInterval(() => {
+            milliseconds++;
+            if (milliseconds == 100) {
+                milliseconds = 0;
+                seconds++;
+                if (seconds == 60) {
+                    seconds = 0;
+                    minutes++;
+                    document.getElementById("minutes").innerHTML = minutes;
+                    if (minutes == 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+            }
+            document.getElementById("milliseconds").innerHTML = milliseconds;
+            document.getElementById("seconds").innerHTML = seconds;
+
+        }, 10)
+    }
+    function stop() {
+        clearInterval(watch);
+        document.getElementById("start").removeAttribute('disabled', 'disabled');
+    }
+    function reseting() {
+        milliseconds = 0;
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        document.getElementById("milliseconds").innerHTML = milliseconds+ms;
+        document.getElementById("seconds").innerHTML = seconds+s;
+        document.getElementById("minutes").innerHTML = minutes+m;
+    }
+
+
+
+    // setInterval (()=>{
+// document.getElementById("print").innerHTML += "hello ";
+    // },1000)
+</script>
+
+</html>
